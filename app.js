@@ -1,5 +1,5 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
-// Array para almacenar los amigos
+// aca declaramos el arreglo donde se almacenara los amigos ingresados
 const listaAmigos = [];
 
 // Elementos del DOM
@@ -7,7 +7,7 @@ const inputAmigo = document.getElementById("amigo");
 const ulListaAmigos = document.getElementById("listaAmigos");
 const ulResultado = document.getElementById("resultado");
 
-// Función para agregar amigos
+// definimos la funcion para agregar los amigos a al arreglo
 function agregarAmigo() {
     const nombre = inputAmigo.value.trim();
     
@@ -22,41 +22,39 @@ function agregarAmigo() {
         return;
     }
     
-    // Agregar el nombre a la lista
+    // de esta manera agregamos al arreglo el nombre
     listaAmigos.push(nombre);
     
-    // Crear y agregar elemento a la lista visual
+   
     const li = document.createElement("li");
     li.textContent = nombre;
     ulListaAmigos.appendChild(li);
     
-    // Limpiar el input
+    // Limpiamos la caja donde ingresamos los nombres
     inputAmigo.value = "";
     inputAmigo.focus();
 }
 
-// Función para sortear un amigo aleatorio
+// definimos la funcion para elegir de manera aleatoria al amigo secreto validadando que haya una cantidad minima de participantes
 function sortearAmigo() {
-    // Validar que haya suficientes participantes
+  
     if (listaAmigos.length < 2) {
         alert("Se necesitan al menos 2 participantes para realizar el sorteo");
         return;
     }
     
-    // Limpiar resultados anteriores
+
     ulResultado.innerHTML = "";
     
-    // Seleccionar un amigo aleatorio
     const indiceAleatorio = Math.floor(Math.random() * listaAmigos.length);
     const amigoSorteado = listaAmigos[indiceAleatorio];
     
-    // Mostrar el resultado
+    // Mostramos el resultado abajo de donde se muestra la lista
     const li = document.createElement("li");
     li.textContent = `¡Tu amigo secreto es: ${amigoSorteado}!`;
     ulResultado.appendChild(li);
 }
 
-// Agregar evento para el Enter en el input
 inputAmigo.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         agregarAmigo();
